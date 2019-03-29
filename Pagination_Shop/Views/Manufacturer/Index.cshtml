@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manufacturers</h2>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Manufacturer Id</th>
+                <th>Manufacturer Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewBag.Manufacturers)
+            {
+                <tr>
+                    <td>@i.ManufacturerId</td>
+                    <td>@i.ManufacturerName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "NewManufacturer", new { id = i.ManufacturerId }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("Del", "Delete", new { id = i.ManufacturerId }, new { @class = "btn btn-danger btn-xs" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            @for (int i = 0; i < ViewBag.CountOfPages; i++)
+            {
+                <li class="page-item">
+                    @Html.ActionLink((i + 1).ToString(), "Index", new { id = i + 1 }, new { @class = "page-link" })
+                </li>
+            }
+        </ul>
+
+    </nav>
+    @Html.ActionLink("New manufacturer", "NewManufacturer", null, new { @class = "btn btn-success", @style = "margin-bottom:10px;" })
+    <div>
+        @Html.ActionLink("Goods", "ShowGood", null, new { @class = "btn btn-warning", @style = "margin-right:10px;" })
+        @Html.ActionLink("Categories", "ShowCategory", null, new { @class = "btn btn-warning" })
+    </div>
+
+</div>

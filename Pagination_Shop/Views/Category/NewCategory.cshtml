@@ -1,0 +1,18 @@
+﻿@model DAL.Category
+
+@{
+    ViewBag.Title = "NewCategory";
+}
+
+<h2>New Category</h2>
+<div>
+    @using (Html.BeginForm("NewCategory", "Category", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.CategoryId)
+    <div>
+        @Html.Label("Category Name", new { @style = "Margin-right:10px;" })
+        @Html.EditorFor(x => x.CategoryName)
+    </div>
+        <input type="submit" />
+    }
+</div>

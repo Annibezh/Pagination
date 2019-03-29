@@ -1,0 +1,18 @@
+﻿@model DAL.Manufacturer
+
+@{
+    ViewBag.Title = "NewManufacturer";
+}
+
+<h2>New Manufacturer</h2>
+<div>
+    @using (Html.BeginForm("NewManufacturer", "Manufacturer", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.ManufacturerId)
+    <div>
+        @Html.Label("Manufacturer Name", new { @style = "margin-right:10px;" })
+        @Html.EditorFor(x => x.ManufacturerName)
+    </div>
+        <input type="submit" />
+    }
+</div>

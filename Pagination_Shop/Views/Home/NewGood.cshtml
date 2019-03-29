@@ -1,0 +1,45 @@
+﻿@model DAL.Good
+
+@{
+    ViewBag.Title = "NewGood";
+}
+<h2>New Good</h2>
+<div>
+    @using (Html.BeginForm("NewGood", "Home", FormMethod.Post))
+    {    
+        @Html.HiddenFor(x => x.GoodId)
+        
+    <div class="form-group">
+        @Html.Label("Good Name", new { @style = "Margin-right:10px;" })
+        @Html.EditorFor(x => x.GoodName)
+    </div>
+    <div class="form-group">
+        @Html.Label("Manufacturer Name", new { @style = "Margin-right:10px;" })
+        <select name="Manufs">
+            @foreach (var m in ViewBag.Manufs)
+            {
+                <option value="@m.ManufacturerId">@m.ManufacturerName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        @Html.Label("Category Name", new { @style = "Margin-right:10px;" })
+        <select name="Cats">
+            @foreach (var c in ViewBag.Cats)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        @Html.Label("Price", new { @style = "Margin-right:10px;" })
+        @Html.EditorFor(x => x.Price)
+    </div>
+    <div class="form-group">
+        @Html.Label("Count", new { @style = "Margin-right:10px;" })
+        @Html.EditorFor(x => x.GoodCount)
+    </div>
+    <input type="submit" />
+}
+</div>
+

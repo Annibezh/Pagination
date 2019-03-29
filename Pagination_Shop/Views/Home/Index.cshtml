@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Goods</h2>
+
+<div>
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th>GoodId</th>
+                <th>GoodName</th>
+                <th>Manufacturer</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>GoodCount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewBag.Goods)
+            {
+            <tr>
+                <td>@i.GoodId</td>
+                <td>@i.GoodName</td>                
+                <td>
+                    @(i.Manufacturer == null ? string.Empty : i.Manufacturer.ManufacturerName)
+                </td>
+                <td>
+                    @(i.Category == null ? string.Empty : i.Category.CategoryName)
+                </td>
+                <td>@i.Price</td>
+                <td>@i.GoodCount</td>
+                <td>
+                    @Html.ActionLink("Edit", "NewGood", new { id = i.GoodId }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Del", "Delete", new { id = i.GoodId }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            @for (int i = 0; i < ViewBag.CountOfPages; i++)
+            {
+                <li class="page-item">
+                    @Html.ActionLink((i + 1).ToString(), "Index", new { id = i + 1 }, new { @class = "page-link" })
+                </li>
+            }
+        </ul>
+
+    </nav>
+    @Html.ActionLink("New good", "NewGood", null, new { @class = "btn btn-success", @style = "margin-bottom:10px;" })
+    <div>
+        @Html.ActionLink("Category", "ShowCategory", null, new { @class = "btn btn-warning", @style = "margin-right:10px;" })
+        @Html.ActionLink("Manufacturer", "ShowManufacturer", null, new { @class = "btn btn-warning" })
+    </div>
+    
+</div>
